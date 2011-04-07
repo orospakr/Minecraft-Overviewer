@@ -2,7 +2,7 @@
   var config = {
     fileExt:     '{imgformat}',
     tileSize:     384,
-    defaultZoom:  1,
+    defaultZoom:  5,
     maxZoom:      {maxzoom},
     cacheMinutes: 0, // Change this to have browsers automatically request new images every x minutes
     bg_color:     '#1A1A1A',
@@ -27,6 +27,7 @@ var signGroups = [
 //    {label: "Storage", match: function(s) {return s.msg.match(/storage/i) || s.msg.match(/dirt/i) || s.msg.match(/sand/)}},
 //    {label: "Below Sealevel", match: function(s) { return s.y<64;}},   
 //    {label: "Info", match: function(s) { return s.msg.match("\\[info\\]");}, icon:"http://google-maps-icons.googlecode.com/files/info.png"},   
+    {label: "Stations", match: function(s) {return s.msg.match(/^==============/) }, icon: "http://google-maps-icons.googlecode.com/files/subway.png"},
     {label: "All", match: function(s) {return true}},
 ];
 
