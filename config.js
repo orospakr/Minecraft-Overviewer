@@ -22,14 +22,14 @@
  *     checked : boolean.  Set to true to have the group visible by default
  *     icon : string. Used to specify an icon url.
  */
-var signGroups = [
+var mainGroups = [
 //    {label: "'To'", checked: false, match: function(s) {return s.msg.match(/to/)}},
 //    {label: "Storage", match: function(s) {return s.msg.match(/storage/i) || s.msg.match(/dirt/i) || s.msg.match(/sand/)}},
 //    {label: "Below Sealevel", match: function(s) { return s.y<64;}},   
 //    {label: "Info", match: function(s) { return s.msg.match("\\[info\\]");}, icon:"http://google-maps-icons.googlecode.com/files/info.png"},   
-    {label: "Bases", match: function(s) {return s.msg.match(/^==Base==/m) }, icon: "http://google-maps-icons.googlecode.com/files/bigcity.png"},
-    {label: "Rail Hubs", match: function(s) {return s.msg.match(/^==Hub==/m) }, icon: "http://google-maps-icons.googlecode.com/files/steamtrain.png"},
-    {label: "Rail Stations", match: function(s) {return s.msg.match(/^==Station==/m) }, icon: "http://google-maps-icons.googlecode.com/files/subway.png"},
+    {label: "Bases", match: function(s) {return s.msg.match(/^==Base==/m) }, icon: "http://google-maps-icons.googlecode.com/files/bigcity.png", checked: true},
+    {label: "Rail Hubs", match: function(s) {return s.msg.match(/^==Hub==/m) }, icon: "http://google-maps-icons.googlecode.com/files/steamtrain.png", checked: true},
+    {label: "Rail Stations", match: function(s) {return s.msg.match(/^==Station==/m) }, icon: "http://google-maps-icons.googlecode.com/files/subway.png", checked: true},
     {label: "Rail Line", match: function(s) {return s.msg.match(/^==Rail Line==/m) }, icon: "http://google-maps-icons.googlecode.com/files/levelcrossing.png"},
     {label: "Canal", match: function(s) {return s.msg.match(/^==Canal==/m) }, icon: "http://google-maps-icons.googlecode.com/files/cave.png"},
     {label: "Caverns", match: function(s) {return s.msg.match(/^==Cavern==/m) }, icon: "http://google-maps-icons.googlecode.com/files/cave.png"},
@@ -44,8 +44,20 @@ var signGroups = [
     {label: "Parks", match: function(s) {return s.msg.match(/^==Park==/m) }, icon: "http://google-maps-icons.googlecode.com/files/park-urban.png"},
     {label: "Seas", match: function(s) {return s.msg.match(/^==Sea==/m) }, icon: "http://google-maps-icons.googlecode.com/files/water.png"},
     {label: "Towers", match: function(s) {return s.msg.match(/^==Tower==/m) }, icon: "http://google-maps-icons.googlecode.com/files/tower.png"},
-    {label: "All", match: function(s) {return true}},
 ];
+
+var signGroups = mainGroups.concat([
+    {label: "All", match: function(s) {return true}, icon: "signpost_icon.png"},
+    {label: "Other", match: function(s) {
+	var matched = false;
+	mainGroups.forEach(function(mgi) {
+	    if(mgi.match(s)) {
+		matched = true;
+	    }
+	});
+	return !matched;
+    }, icon: "signpost_icon.png"}
+]);
 
 /* mapTypeData -- a list of alternate map renderings available. At least one rendering must be
  * listed.  When more than one are provided, controls to switch between them are provided, with

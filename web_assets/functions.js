@@ -82,8 +82,13 @@ function drawMapControls() {
         label = item.label;
         hasSignGroup = true;
         var d = document.createElement("div");
+	d.className = "signControlItem";
         var n = document.createElement("input");
         n.type="checkbox";
+
+	var img = document.createElement("img");
+	img.src = item.icon;
+	d.appendChild(img);
 
         $(n).data("label",label);
         jQuery(n).click(function(e) {
