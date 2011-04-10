@@ -2,7 +2,7 @@
   var config = {
     fileExt:     '{imgformat}',
     tileSize:     384,
-    defaultZoom:  5,
+    defaultZoom:  4,
     maxZoom:      {maxzoom},
     cacheMinutes: 0, // Change this to have browsers automatically request new images every x minutes
     bg_color:     '#1A1A1A',
