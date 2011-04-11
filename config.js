@@ -38,7 +38,7 @@ var mainGroups = [
     {label: "Fortresses", match: function(s) {return s.msg.match(/^==Fortress==/m) }, icon: "http://google-maps-icons.googlecode.com/files/fortress.png", checked: true},
     {label: "Islands", match: function(s) {return s.msg.match(/^==Island==/m) }, icon: "http://google-maps-icons.googlecode.com/files/fortress.png", checked: true},
     {label: "Lakes", match: function(s) {return s.msg.match(/^==Lake==/m) }, icon: "http://google-maps-icons.googlecode.com/files/lake.png", checked: true},
-    {label: "Mines", match: function(s) {return s.msg.match(/^==Mine==/m) }, icon: "http://google-maps-icons.googlecode.com/files/mine.png", checked: true};
+    {label: "Mines", match: function(s) {return s.msg.match(/^==Mine==/m) }, icon: "http://google-maps-icons.googlecode.com/files/mine.png", checked: true},
     {label: "Monuments", match: function(s) {return s.msg.match(/^==Monument==/m) }, icon: "http://google-maps-icons.googlecode.com/files/modernmonument.png", checked: true},
     {label: "Mountain", match: function(s) {return s.msg.match(/^==Mountain==/m) }, icon: "http://google-maps-icons.googlecode.com/files/canyon.png", checked: true},
     {label: "Outposts", match: function(s) {return s.msg.match(/^==Outpost==/m) }, icon: "http://google-maps-icons.googlecode.com/files/tent.png", checked: true},
