@@ -38,6 +38,7 @@ var mainGroups = [
     {label: "Fortresses", match: function(s) {return s.msg.match(/^==Fortress==/m) }, icon: "http://google-maps-icons.googlecode.com/files/fortress.png"},
     {label: "Islands", match: function(s) {return s.msg.match(/^==Island==/m) }, icon: "http://google-maps-icons.googlecode.com/files/fortress.png"},
     {label: "Lakes", match: function(s) {return s.msg.match(/^==Lake==/m) }, icon: "http://google-maps-icons.googlecode.com/files/lake.png"},
+    {label: "Mines", match: function(s) {return s.msg.match(/^==Mine==/m) }, icon: "http://google-maps-icons.googlecode.com/files/mine.png"};
     {label: "Monuments", match: function(s) {return s.msg.match(/^==Monument==/m) }, icon: "http://google-maps-icons.googlecode.com/files/modernmonument.png"},
     {label: "Mountain", match: function(s) {return s.msg.match(/^==Mountain==/m) }, icon: "http://google-maps-icons.googlecode.com/files/canyon.png"},
     {label: "Outposts", match: function(s) {return s.msg.match(/^==Outpost==/m) }, icon: "http://google-maps-icons.googlecode.com/files/tent.png"},
@@ -47,7 +48,7 @@ var mainGroups = [
 ];
 
 var signGroups = mainGroups.concat([
-    {label: "All", match: function(s) {return true}, icon: "signpost_icon.png"},
+    // {label: "All", match: function(s) {return true}, icon: "signpost_icon.png"},
     {label: "Other", match: function(s) {
 	var matched = false;
 	mainGroups.forEach(function(mgi) {
