@@ -1,7 +1,22 @@
 var prevInfoWindow = null;
 
-function prepareSignMarker(marker, item) {
+function preg_quote( str ) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: booeyOH
+    // +   improved by: Ates Goral (http://magnetiq.com)
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Onno Marsman
+    // *     example 1: preg_quote("$40");
+    // *     returns 1: '\$40'
+    // *     example 2: preg_quote("*RRRING* Hello?");
+    // *     returns 2: '\*RRRING\* Hello\?'
+    // *     example 3: preg_quote("\\.+*?[^]$(){}=!<>|:");
+    // *     returns 3: '\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:'
 
+    return (str+'').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, "\\$1");
+}
+
+function prepareSignMarker(marker, item) {
     var c = "<div class=\"infoWindow\"><img src=\"signpost.png\" /><p>" + item.msg.replace(/\n/g,"<br/>") + "</p></div>";
     var infowindow = new google.maps.InfoWindow({content: c
             });
@@ -156,7 +171,53 @@ function initRegions() {
     }
 }
 
+function drawSearchBox() {
+    var searchControl = document.createElement("div");
+    searchControl.id = "searchControl";
 
+
+    var searchInput = document.createElement("input");
+    searchInput.type = "text";
+
+    searchControl.appendChild(searchInput);
+
+    var searchDropDown = document.createElement("div");
+    searchDropDown.id = "searchDropDown";
+    searchControl.appendChild(searchDropDown);
+
+    $(searchInput).keyup(function(e) {
+	if(searchInput.value.length !== 0) {
+	    $(searchDropDown).fadeIn();
+	    
+	    $(searchDropDown).empty();
+
+	    markerData.forEach(function(sign) {
+		var regex = new RegExp(preg_quote(searchInput.value), "mi");
+		if(sign.msg.match(regex)) {
+		    if(sign.marker !== undefined && sign.marker.getVisible()) {
+			var t = document.createElement("div");
+			t.className = "searchResultItem";
+			var i = document.createElement("img");
+			i.src = sign.marker.icon_url;
+			t.appendChild(i);
+			var s = document.createElement("span");
+			s.innerHTML = sign.msg;
+			t.appendChild(s);
+			searchDropDown.appendChild(t);
+			$(t).click(function(e) {
+			    map.setZoom(7);
+			    map.setCenter(sign.marker.getPosition());
+			});
+		    }
+		}
+	    });
+	} else {
+	    $(searchDropDown).fadeOut();
+	}
+    });
+
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(searchControl);    
+}
 
 function initMarkers() {
     if (markersInit) { return; }
@@ -182,6 +243,7 @@ function initMarkers() {
             continue;
         }
 
+	item.markers = [];
         var matched = false;
         for (idx in signGroups) {
             var signGroup = signGroups[idx];
@@ -204,6 +266,10 @@ function initMarkers() {
                         icon: iconURL,
                         visible: false
                         });
+		// since retrieving it with marker.getIcon().url later doesn't seem to work
+		marker.icon_url = iconURL;
+		item.markers.push(marker);
+		item.marker = marker;
                 if (markerCollection[label]) {
                     markerCollection[label].push(marker);
                 } else {
@@ -320,6 +386,7 @@ function initialize() {
     initMarkers();
     initRegions();
     drawMapControls();
+    drawSearchBox();
 
     //makeLink();
 

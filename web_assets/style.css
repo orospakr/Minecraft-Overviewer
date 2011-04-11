@@ -17,6 +17,35 @@ body { height: 100%; margin: 0px; padding: 0px ; background-color: #000; }
     font-family: monospace;
 }
 
+#searchControl {
+    padding: 5px;
+    height: 20px;
+    font-family: Arial, sans-serif;
+}
+
+#searchControl > input {
+    border: 2px solid #000;
+    width: 20em;
+    font-size: 12pt;
+    background-colour: #fff;
+}
+
+#searchControl > div#searchDropDown {
+    border: 1px solid #000;
+    font-size: 12px;
+    background-color: #fff;
+    display: none;
+}
+
+div.searchResultItem {
+    font-size: 14pt;
+}
+
+div.searchResultItem img {
+    width: 24px;
+    height: 24px;
+}
+
 #signControl {
     padding: 5px;
     height: 15px;
@@ -44,6 +73,7 @@ div.signControlItem img {
     background-color: #fff;
     display: none;
 }
+
 
 
 #link {
