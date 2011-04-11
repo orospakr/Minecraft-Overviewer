@@ -73,8 +73,6 @@ function drawMapControls() {
 
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(signControl);
 
-
-
     var hasSignGroup = false;
     for (idx in signGroups) {
         var item = signGroups[idx];
@@ -93,13 +91,19 @@ function drawMapControls() {
         $(n).data("label",label);
         jQuery(n).click(function(e) {
                 var t = $(e.target);
+	    if(markerCollection[t.data("label")] !== undefined) {
                 jQuery.each(markerCollection[t.data("label")], function(i,elem) {elem.setVisible(e.target.checked);});
-                });
+	    }
+        });
 
 
         if (item.checked) {
             n.checked = true;
-            jQuery.each(markerCollection[label], function(i,elem) {elem.setVisible(n.checked);});
+	    if(markerCollection[label] !== undefined) {
+		jQuery.each(markerCollection[label], function(i,elem) {
+		    elem.setVisible(n.checked);
+		});
+	    }
         }
         dropdownDiv.appendChild(d);
         d.appendChild(n)
