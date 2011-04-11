@@ -20,6 +20,7 @@ body { height: 100%; margin: 0px; padding: 0px ; background-color: #000; }
 #searchControl {
     padding: 5px;
     height: 20px;
+    width: 20em;
     font-family: Arial, sans-serif;
 }
 
@@ -30,15 +31,16 @@ body { height: 100%; margin: 0px; padding: 0px ; background-color: #000; }
     background-colour: #fff;
 }
 
-#searchControl > div#searchDropDown {
+div#searchDropDown {
     border: 1px solid #000;
-    font-size: 12px;
+    width: 17em;
+    font-size: 14pt;
     background-color: #fff;
     display: none;
 }
 
 div.searchResultItem {
-    font-size: 14pt;
+
 }
 
 div.searchResultItem img {
@@ -48,8 +50,12 @@ div.searchResultItem img {
 
 #signControl {
     padding: 5px;
+    padding-left: 3em;
+    padding-right: 3em;
     height: 15px;
     font-family: Arial, sans-serif;
+    font-size: 10pt;
+    width: 10em;
 }
 
 div.signControlItem img {
@@ -61,15 +67,13 @@ div.signControlItem img {
     background-color: #fff;
     border: 2px solid #000;
     text-align: center;
-    width: 70px;
-    font-size: 12px;
-    width: 70px;
+    width: 10em;
     cursor: pointer;
 }
 
 #signControl > div#dropDown {
     border: 1px solid #000;
-    font-size: 12px;
+    width: 10em;
     background-color: #fff;
     display: none;
 }
