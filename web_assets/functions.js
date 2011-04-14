@@ -29,6 +29,18 @@ function prepareSignMarker(marker, item) {
 
 }
 
+function goToMCCoords(x, y, z) {
+    var converted = fromWorldToLatLng(x, y, z);
+    var marker = new google.maps.Marker({position: converted,
+					 map: map,
+					 title: "Manual Marker: " + x + ", " + y + ", " + z,
+					 icon: "signpost.png"
+					});
+    map.setZoom(7);
+    map.setCenter(marker.getPosition());
+};
+document.goToMCCoords = goToMCCoords;
+
 
 function drawMapControls() {
 
