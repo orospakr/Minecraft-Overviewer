@@ -17,7 +17,7 @@ function preg_quote( str ) {
 }
 
 function prepareSignMarker(marker, item) {
-    var c = "<div class=\"infoWindow\"><img src=\"signpost.png\" /><p>" + item.msg.replace(/\n/g,"<br/>") + "</p></div>";
+    var c = "<div class=\"infoWindow\"><img src=\"signpost.png\" /><p>" + item.msg.replace(/\n/g,"<br/>") + "</p><p>(" + item.x + "," + item.y + "," + item.z +")</div>";
     var infowindow = new google.maps.InfoWindow({content: c
             });
     google.maps.event.addListener(marker, 'click', function() {
