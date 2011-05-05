@@ -35,6 +35,7 @@ var mainGroups = [
     {label: "Caverns", match: function(s) {return s.msg.match(/^==Cavern==/m) }, icon: "http://google-maps-icons.googlecode.com/files/cave.png", checked: true},
     {label: "Commons", match: function(s) {return s.msg.match(/^==Commons==/m) }, icon: "http://google-maps-icons.googlecode.com/files/dancinghall.png", checked: true},
     {label: "Farms", match: function(s) {return s.msg.match(/^==Farm==/m) }, icon: "http://google-maps-icons.googlecode.com/files/farm.png", checked: true},
+    {label: "Forests", match: function(s) {return s.msg.match(/^==Forest==/m) }, icon: "http://google-maps-icons.googlecode.com/files/forest.png", checked: true},
     {label: "Fortresses", match: function(s) {return s.msg.match(/^==Fortress==/m) }, icon: "http://google-maps-icons.googlecode.com/files/fortress.png", checked: true},
     {label: "Islands", match: function(s) {return s.msg.match(/^==Island==/m) }, icon: "http://google-maps-icons.googlecode.com/files/fortress.png", checked: true},
     {label: "Lakes", match: function(s) {return s.msg.match(/^==Lake==/m) }, icon: "http://google-maps-icons.googlecode.com/files/lake.png", checked: true},
