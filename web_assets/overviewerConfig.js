@@ -1,3 +1,26 @@
+var ourGroups = [
+    {label: "Bases", match: function(s) {return s.msg.match(/^==Base==/m) }, icon: "http://google-maps-icons.googlecode.com/files/bigcity.png", checked: true},
+    {label: "Rail Hubs", match: function(s) {return s.msg.match(/^==Hub==/m) }, icon: "http://google-maps-icons.googlecode.com/files/steamtrain.png", checked: true},
+    {label: "Rail Stations", match: function(s) {return s.msg.match(/^==Station==/m) }, icon: "http://google-maps-icons.googlecode.com/files/subway.png", checked: true},
+    {label: "Rail Line", match: function(s) {return s.msg.match(/^==Rail Line==/m) }, icon: "http://google-maps-icons.googlecode.com/files/levelcrossing.png", checked: true},
+    {label: "Canal", match: function(s) {return s.msg.match(/^==Canal==/m) }, icon: "http://google-maps-icons.googlecode.com/files/cave.png", checked: true},
+    {label: "Caverns", match: function(s) {return s.msg.match(/^==Cavern==/m) }, icon: "http://google-maps-icons.googlecode.com/files/cave.png", checked: true},
+    {label: "Commons", match: function(s) {return s.msg.match(/^==Commons==/m) }, icon: "http://google-maps-icons.googlecode.com/files/dancinghall.png", checked: true},
+    {label: "Farms", match: function(s) {return s.msg.match(/^==Farm==/m) }, icon: "http://google-maps-icons.googlecode.com/files/farm.png", checked: true},
+    {label: "Forests", match: function(s) {return s.msg.match(/^==Forest==/m) }, icon: "http://google-maps-icons.googlecode.com/files/forest.png", checked: true},
+    {label: "Fortresses", match: function(s) {return s.msg.match(/^==Fortress==/m) }, icon: "http://google-maps-icons.googlecode.com/files/fortress.png", checked: true},
+    {label: "Islands", match: function(s) {return s.msg.match(/^==Island==/m) }, icon: "http://google-maps-icons.googlecode.com/files/fortress.png", checked: true},
+    {label: "Lakes", match: function(s) {return s.msg.match(/^==Lake==/m) }, icon: "http://google-maps-icons.googlecode.com/files/lake.png", checked: true},
+    {label: "Mines", match: function(s) {return s.msg.match(/^==Mine==/m) }, icon: "http://google-maps-icons.googlecode.com/files/mine.png", checked: true},
+    {label: "Monuments", match: function(s) {return s.msg.match(/^==Monument==/m) }, icon: "http://google-maps-icons.googlecode.com/files/modernmonument.png", checked: true},
+    {label: "Mountain", match: function(s) {return s.msg.match(/^==Mountain==/m) }, icon: "http://google-maps-icons.googlecode.com/files/canyon.png", checked: true},
+    {label: "Outposts", match: function(s) {return s.msg.match(/^==Outpost==/m) }, icon: "http://google-maps-icons.googlecode.com/files/tent.png", checked: true},
+    {label: "Parks", match: function(s) {return s.msg.match(/^==Park==/m) }, icon: "http://google-maps-icons.googlecode.com/files/park-urban.png", checked: true},
+    {label: "Seas", match: function(s) {return s.msg.match(/^==Sea==/m) }, icon: "http://google-maps-icons.googlecode.com/files/water.png", checked: true},
+    {label: "Towers", match: function(s) {return s.msg.match(/^==Tower==/m) }, icon: "http://google-maps-icons.googlecode.com/files/tower.png", checked: true},
+];
+
+
 var overviewerConfig = {
     /**
      * These are things that will probably not need to be changed by the user,
@@ -57,7 +80,7 @@ var overviewerConfig = {
         /**
          * The zoom level when the page is loaded without a specific zoom setting
          */
-        'defaultZoom':  0,
+        'defaultZoom':  4,
         /**
          * This controls how far you can zoom out.
          */
@@ -99,13 +122,18 @@ var overviewerConfig = {
          *     checked : boolean.  Set to true to have the group visible by default
          *     icon : string. Used to specify an icon url.
          */
-        'signs': [
-            //{label: "'To'", checked: false, match: function(s) {return s.msg.match(/to/)}},
-            //{label: "Storage", match: function(s) {return s.msg.match(/storage/i) || s.msg.match(/dirt/i) || s.msg.match(/sand/)}},
-            //{label: "Below Sealevel", match: function(s) { return s.y<64;}},   
-            //{label: "Info", match: function(s) { return s.msg.match("\\[info\\]");}, icon:"http://google-maps-icons.googlecode.com/files/info.png"},   
-            {'label':'All', 'match':function(sign){return true;}}
-        ],
+	// I do a little extra magic here.  I want an exlusionary "Other" group. --orospakr
+	'signs': ourGroups.concat([
+	    {label: "Other", match: function(s) {
+		var matched = false;
+		ourGroups.forEach(function(mgi) {
+		    if(mgi.match(s)) {
+			matched = true;
+		    }
+		});
+		return !matched;
+	    }, icon: "signpost_icon.png"}
+	]),
         /* regions -- A list of region groups.  A region can fall into zero,
          * one, or more than one group.  See below for some examples.
          * Regions have been designed to work with the WorldGuard Overviewer
