@@ -318,7 +318,7 @@ var overviewer = {
                             overviewer.util.debug(label);
                             overviewer.collections.markers[label].push(marker);
                             if (item.type == 'sign') {
-                                overviewer.util.createMarkerInfoWindow(marker);
+                                overviewer.util.createMarkerInfoWindow(marker, item);
                             }
                         }
                     }
@@ -765,9 +765,9 @@ var overviewer = {
          * 
          * @param google.maps.Marker marker
          */
-        'createMarkerInfoWindow': function(marker) {
+        'createMarkerInfoWindow': function(marker, item) {
             var windowContent = '<div class="infoWindow"><img src="' + marker.icon +
-                '"/><p>' + marker.title.replace(/\n/g,'<br/>') + '</p></div>';
+                '"/><p>' + marker.title.replace(/\n/g,'<br/>') + '<br/><br/>(' + item.x + ',' + item.y + ',' + item.z + ')</p></div>';
             var infowindow = new google.maps.InfoWindow({
                 'content': windowContent
             });
